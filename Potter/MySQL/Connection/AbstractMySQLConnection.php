@@ -2,6 +2,7 @@
 
 namespace Potter\MySQL\Connection;
 
+use Potter\Database\DatabaseInterface;
 use Potter\Database\Connection\{
     DatabaseConnectionTrait,
     Remote\AbstractRemoteDatabaseConnection
@@ -11,9 +12,16 @@ abstract class AbstractMySQLConnection extends AbstractRemoteDatabaseConnection 
 {
     use DatabaseConnectionTrait, MySQLConnectionTrait;
 
+    private const PREFIX = 'mysql';
+
     final public function getDatabase(string $database): DatabaseInterface
     {
         return new MySQLDatabase($this, $database);
+    }
+
+    public function getPrefix(): string
+    {
+        return self::PREFIX;
     }
 
     abstract public function showDatabases(): array;
