@@ -2,6 +2,11 @@
 
 namespace Potter\MySQL\Connection;
 
+use Potter\{
+    Database\DatabaseInterface,
+    MySQL\Database\MySQLDatabase
+};
+
 trait MySQLConnectionTrait
 {
     private array $databases;
@@ -14,7 +19,18 @@ trait MySQLConnectionTrait
         return $this->databases;
     }
 
+    final public function getTables(string $database): array
+    {
+        $tables = [];
+        foreach($this->showTables($database) as $table) {
+            array_push($tables, array_values($table)[0]);
+        }
+        return $tables;
+    }
+
     abstract public function showDatabases(): array;
+
+    abstract public function showTables(string $database): array;
 
     final public function refreshDatabases(): void
     {
