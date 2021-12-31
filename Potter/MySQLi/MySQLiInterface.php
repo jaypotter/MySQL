@@ -7,8 +7,9 @@ use Potter\{
     MySQL\Connection\MySQLConnectionInterface
 };
 
-interface MySQLiConnectionInterface extends AbstractionInterface, MySQLConnectionInterface
+interface MySQLiInterface extends AbstractionInterface, MySQLConnectionInterface
 {
+    final public const BASE_CLASS = 'MySQLi';
     final public const DEFAULT_HOST = 'localhost';
     final public const DEFAULT_PASS = '';
     final public const DEFAULT_PORT = 3306;
