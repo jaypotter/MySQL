@@ -18,6 +18,6 @@ abstract class AbstractMySQLi extends AbstractMySQLConnection implements MySQLiI
 
     final public function showDatabases(): array
     {
-        mysqli_query($this->getObject(), MySQLConnectionInterface::SHOW_DATABASES)->fetch_all(MYSQLI_ASSOC);
+        return mysqli_query($this->getObject(), self::SHOW_DATABASES)->fetch_all(MYSQLI_ASSOC);
     }
 }
