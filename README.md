@@ -1,2 +1,2 @@
 # MySQL
-Open Source PHP 8 MySQL Implementation
+Open Source PHP 8 MySQL Interface
