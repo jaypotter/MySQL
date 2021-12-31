@@ -27,6 +27,8 @@ abstract class AbstractMySQLConnection extends AbstractRemoteDatabaseConnection 
         return self::PREFIX;
     }
 
+    abstract public function showCharacterSet(): array;
+
     abstract public function showDatabases(): array;
 
     abstract public function showTablesIn(string $database): array;

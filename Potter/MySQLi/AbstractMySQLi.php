@@ -28,6 +28,11 @@ abstract class AbstractMySQLi extends AbstractMySQLConnection implements MySQLiI
         );
     }
 
+    final public function showCharacterSet(): array
+    {
+        return mysqli_query($this->getObject(), self::SHOW_CHARACTER_SET)->fetch_all(MYSQLI_ASSOC);
+    }
+
     final public function showDatabases(): array
     {
         return mysqli_query($this->getObject(), self::SHOW_DATABASES)->fetch_all(MYSQLI_ASSOC);
