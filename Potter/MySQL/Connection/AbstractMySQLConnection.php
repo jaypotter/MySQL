@@ -2,7 +2,7 @@
 
 namespace Potter\MySQL\Connection;
 
-use Potter\Connection\Database\{
+use Potter\Database\Connection\{
     DatabaseConnectionTrait,
     Remote\AbstractRemoteDatabaseConnection
 };

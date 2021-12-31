@@ -2,7 +2,7 @@
 
 namespace Potter\MySQL\Connection;
 
-use Potter\Connection\Database\Remote\RemoteDatabaseConnectionInterface;
+use Potter\Database\Connection\Remote\RemoteDatabaseConnectionInterface;
 
 interface MySQLConnectionInterface extends RemoteDatabaseConnectionInterface
 {
