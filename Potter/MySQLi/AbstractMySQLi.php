@@ -7,10 +7,7 @@ use Potter\Abstraction\{
     AbstractionInterface,
     AbstractionTrait
 };
-use Potter\MySQL\Connection\{
-    AbstractMySQLConnection,
-    MySQLInterfaceTrait
-};
+use Potter\MySQL\Connection\AbstractMySQLConnection;
 use \Exception;
 
 abstract class AbstractMySQLi extends AbstractMySQLConnection implements MySQLiInterface
