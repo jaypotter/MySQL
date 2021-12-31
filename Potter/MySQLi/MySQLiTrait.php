@@ -2,7 +2,6 @@
 
 namespace Potter\MySQLi;
 
-use \MySQLi_query;
 use Potter\MySQLi\Native\NativeMySQLi;
 
 trait MySQLiTrait
@@ -26,11 +25,6 @@ trait MySQLiTrait
     abstract public function getPort(): int;
 
     abstract public function getUser(): string;
-
-    final public function showDatabases(): array
-    {
-        mysqli_query($this->getObject(), self::SHOW_TABLES)->fetch_all(MYSQLI_ASSOC);
-    }
 
     final public function showTables(string $database): array
     {

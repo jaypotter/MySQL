@@ -8,7 +8,7 @@ final class MySQLi extends AbstractMySQLi
     
     private const PREFIX = 'mysqli';
 
-    public function __construct(string $user = self::DEFAULT_USER, string $pass = self::DEFAULT_PASS, string $host = self::DEFAULT_HOST, string $port = self::DEFAULT_PORT)
+    public function __construct(string $user = self::DEFAULT_USER, string $pass = self::DEFAULT_PASS, string $host = self::DEFAULT_HOST, int $port = self::DEFAULT_PORT)
     {
         $this->setHost($host);
         $this->setPass($pass);

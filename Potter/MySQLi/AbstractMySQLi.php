@@ -15,4 +15,9 @@ use Potter\MySQL\Connection\{
 abstract class AbstractMySQLi extends AbstractMySQLConnection implements MySQLiInterface
 {
     use AbstractionTrait, AbstractionBaseClassTrait;
+
+    final public function showDatabases(): array
+    {
+        return mysqli_query($this->getObject(), self::SHOW_DATABASES)->fetch_all(MYSQLI_ASSOC);
+    }
 }
