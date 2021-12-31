@@ -12,6 +12,6 @@ trait MySQLDatabaseTrait
 
     final public function showTables(): array
     {
-        return $this->getConnection()->showTables($this->getName());
+        return $this->getConnection()->showTablesIn($this->getName());
     }
 }
