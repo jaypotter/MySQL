@@ -9,7 +9,7 @@ use Potter\Abstraction\{
 };
 use Potter\MySQL\Connection\AbstractMySQLConnection;
 
-abstract class AbstractMySQLiConnection extends AbstractMySQLConnection implements MySQLiConnectionInterface
+abstract class AbstractMySQLi extends AbstractMySQLConnection implements MySQLiInterface
 {
     use AbstractionTrait, AbstractionBaseClassTrait;
 }
