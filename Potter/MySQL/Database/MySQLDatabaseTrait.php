@@ -2,13 +2,21 @@
 
 namespace Potter\MySQL\Database;
 
-use Potter\Database\Connection\DatabaseConnectionInterface;
+use Potter\Database\{
+    Connection\DatabaseConnectionInterface,
+    Table\TableInterface
+};
 
 trait MySQLDatabaseTrait
 {
     private string $characterSet = MySQLDatabaseInterface::DEFAULT_CHARACTER_SET;
     private string $collation = MySQLDatabaseInterface::DEFAULT_COLLATION;
     private bool $encrypted = MySQLDatabaseInterface::DEFAULT_ENCRYPTED;
+
+    final public function createTable(string $table): void
+    {
+
+    }
 
     final public function getCharacterSet(): string
     {
@@ -18,6 +26,11 @@ trait MySQLDatabaseTrait
     final public function getCollation(): string
     {
         return $this->collation;
+    }
+
+    final public function getTable(string $table): TableInterface
+    {
+
     }
 
     public function isEncrypted(): bool
