@@ -2,6 +2,11 @@
 
 namespace Potter\MySQL\Connection;
 
+use Potter\{
+    Database\DatabaseInterface,
+    MySQL\Database\MySQLDatabase
+};
+
 trait MySQLConnectionTrait
 {
     private array $databases;
