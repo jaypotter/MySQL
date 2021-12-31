@@ -6,8 +6,8 @@ use Potter\Database\Connection\Remote\RemoteDatabaseConnectionInterface;
 
 interface MySQLConnectionInterface extends RemoteDatabaseConnectionInterface
 {
-    final public const SHOW_DATABASES = "SHOW DATABASES";
-    final public const SHOW_TABLES = "SHOW TABLES";
+    public const SHOW_DATABASES = "SHOW DATABASES";
+    public const SHOW_TABLES = "SHOW TABLES";
 
     public function showDatabases(): array;
 
