@@ -15,9 +15,15 @@ abstract class AbstractMySQLDatabase extends AbstractDatabase implements MySQLDa
 
     abstract public function getCollation(): string;
 
+    abstract public function isEncrypted(): bool;
+
     abstract public function setCharacterSet(string $characterSet): void;
 
     abstract public function setCollation(string $collation): void;
+
+    abstract public function setEncrypted(): void;
+
+    abstract public function setPlain(): void;
     
     abstract public function showTables(): array;
 }
