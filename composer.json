@@ -1,0 +1,20 @@
+{
+    "name": "potter/mysql",
+    "description": "Open Source PHP 8 MySQL Interface",
+    "minimum-stability": "dev",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Jay Potter",
+            "email": "jay@jaypotter.ca"
+        }
+    ],
+    "autoload": {
+        "psr-4": {"Potter\\": "Potter/"}
+    },
+    "require": {
+        "php": ">=8.0",
+        "potter/database-connection": "dev-main"
+    }
+}
