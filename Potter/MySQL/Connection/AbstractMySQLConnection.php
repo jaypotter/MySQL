@@ -2,7 +2,10 @@
 
 namespace Potter\MySQL\Connection;
 
-use Potter\Database\DatabaseInterface;
+use Potter\{
+    Database\DatabaseInterface,
+    MySQL\Database\MySQLDatabase
+};
 use Potter\Database\Connection\{
     DatabaseConnectionTrait,
     Remote\AbstractRemoteDatabaseConnection
@@ -26,5 +29,5 @@ abstract class AbstractMySQLConnection extends AbstractRemoteDatabaseConnection 
 
     abstract public function showDatabases(): array;
 
-    abstract public function showTables(string $database): array;
+    abstract public function showTablesIn(string $database): array;
 }
