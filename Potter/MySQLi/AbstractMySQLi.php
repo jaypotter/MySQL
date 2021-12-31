@@ -7,12 +7,32 @@ use Potter\Abstraction\{
     AbstractionInterface,
     AbstractionTrait
 };
-use Potter\MySQL\Connection\AbstractMySQLConnection;
+use Potter\Database\DatabaseInterface;
+use Potter\MySQL\Connection\{
+    AbstractMySQLConnection,
+    MySQLCharacterSetTrait
+};
 use \Exception;
 
 abstract class AbstractMySQLi extends AbstractMySQLConnection implements MySQLiInterface
 {
-    use AbstractionTrait, AbstractionBaseClassTrait;
+    use AbstractionTrait, AbstractionBaseClassTrait, MySQLCharacterSetTrait;
+
+    public function createDatabase(DatabaseInterface $database): void
+    {       
+        mysqli_query(
+            mysqli: $this->getObject(),
+            query: self::CREATE_DATABASE . ' ' . $database->getName() .
+                ' CHARACTER SET = ' . $database->getCharacterSet() .
+                ' COLLATE = ' . $database->getCollation() .
+                ' ENCRYPTION = ' . $database->isEncrypted() ? 'Y' : 'N' . ';'
+        );
+    }
+
+    final public function showCharacterSet(): array
+    {
+        return mysqli_query($this->getObject(), self::SHOW_CHARACTER_SET)->fetch_all(MYSQLI_ASSOC);
+    }
 
     final public function showDatabases(): array
     {
