@@ -25,9 +25,4 @@ trait MySQLiTrait
     abstract public function getPort(): int;
 
     abstract public function getUser(): string;
-
-    final public function showTables(string $database): array
-    {
-
-    }
 }

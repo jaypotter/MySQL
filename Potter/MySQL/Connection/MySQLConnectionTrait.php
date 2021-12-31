@@ -22,7 +22,7 @@ trait MySQLConnectionTrait
     final public function getTables(string $database): array
     {
         $tables = [];
-        foreach($this->showTables($database) as $table) {
+        foreach($this->showTablesIn($database) as $table) {
             array_push($tables, array_values($table)[0]);
         }
         return $tables;
@@ -30,7 +30,7 @@ trait MySQLConnectionTrait
 
     abstract public function showDatabases(): array;
 
-    abstract public function showTables(string $database): array;
+    abstract public function showTablesIn(string $database): array;
 
     final public function refreshDatabases(): void
     {
