@@ -7,15 +7,16 @@ use Potter\Abstraction\{
     AbstractionInterface,
     AbstractionTrait
 };
-use Potter\{
-    Database\DatabaseInterface,
-    MySQL\Connection\AbstractMySQLConnection
+use Potter\Database\DatabaseInterface;
+use Potter\MySQL\Connection\{
+    AbstractMySQLConnection,
+    MySQLCharacterSetTrait
 };
 use \Exception;
 
 abstract class AbstractMySQLi extends AbstractMySQLConnection implements MySQLiInterface
 {
-    use AbstractionTrait, AbstractionBaseClassTrait;
+    use AbstractionTrait, AbstractionBaseClassTrait, MySQLCharacterSetTrait;
 
     public function createDatabase(DatabaseInterface $database): void
     {       

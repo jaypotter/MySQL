@@ -6,6 +6,7 @@ use Potter\Database\{
     Connection\DatabaseConnectionInterface,
     Table\TableInterface
 };
+use \Exception;
 
 trait MySQLDatabaseTrait
 {
@@ -44,6 +45,9 @@ trait MySQLDatabaseTrait
 
     final public function setCharacterSet(string $characterSet): void
     {
+        if (!$this->characterSetExists($characterSet)) {
+            throw new Exception;
+        }
         $this->characterSet = $characterSet;
     }
 

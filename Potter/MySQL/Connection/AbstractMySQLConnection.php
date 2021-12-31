@@ -17,6 +17,10 @@ abstract class AbstractMySQLConnection extends AbstractRemoteDatabaseConnection 
 
     private const PREFIX = 'mysql';
 
+    abstract public function characterSetExists(string $characterSet): bool;
+
+    abstract public function getCharacterSet(): array;
+
     final public function getDatabase(string $database): DatabaseInterface
     {
         return new MySQLDatabase($this, $database);
