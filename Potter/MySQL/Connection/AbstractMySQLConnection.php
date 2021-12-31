@@ -12,4 +12,6 @@ abstract class AbstractMySQLConnection extends AbstractRemoteDatabaseConnection 
     use DatabaseConnectionTrait, MySQLConnectionTrait;
 
     abstract public function showDatabases(): array;
+
+    abstract public function showTables(string $database): array;
 }
