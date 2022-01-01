@@ -4,6 +4,7 @@ namespace Potter\MySQL\Database;
 
 use Potter\Database\{
     Connection\DatabaseConnectionInterface,
+    MySQL\Connection\MySQLConnectionInterface,
     Table\TableInterface
 };
 use \Exception;
@@ -45,7 +46,9 @@ trait MySQLDatabaseTrait
 
     final public function setCharacterSet(string $characterSet): void
     {
-        if (!$this->characterSetExists($characterSet)) {
+        /** @var MySQLConnectionInterface $conn */
+        $conn = $this->getConnection();
+        if (!$conn->characterSetExists($characterSet)) {
             throw new Exception;
         }
         $this->characterSet = $characterSet;
@@ -68,6 +71,8 @@ trait MySQLDatabaseTrait
 
     final public function showTables(): array
     {
-        return $this->getConnection()->showTablesIn($this->getName());
+        /** @var MySQLConnectionInterface $conn */
+        $conn = $this->getConnection();
+        return $conn->showTablesIn($this->getName());
     }
 }

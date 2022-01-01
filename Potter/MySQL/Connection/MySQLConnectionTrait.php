@@ -19,6 +19,8 @@ trait MySQLConnectionTrait
         );
     }
 
+    abstract public function getCharacterSet(): array;
+
     final public function getDatabases(bool $refresh = false): array
     {
         if ($refresh||!isset($this->databases)) {

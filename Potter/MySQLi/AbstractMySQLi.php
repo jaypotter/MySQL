@@ -12,13 +12,15 @@ use Potter\MySQL\Connection\{
     AbstractMySQLConnection,
     MySQLCharacterSetTrait
 };
+use Potter\MySQL\Database\MySQLDatabaseInterface;
 use \Exception;
 
 abstract class AbstractMySQLi extends AbstractMySQLConnection implements MySQLiInterface
 {
     use AbstractionTrait, AbstractionBaseClassTrait, MySQLCharacterSetTrait;
 
-    public function createDatabase(DatabaseInterface $database): void
+    /** @var MySQLDatabaseInterface $database */
+    final public function createDatabase(DatabaseInterface $database): void
     {       
         mysqli_query(
             mysqli: $this->getObject(),

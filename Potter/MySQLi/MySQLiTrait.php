@@ -20,6 +20,8 @@ trait MySQLiTrait
 
     abstract public function getHost(): string;
 
+    abstract public function getObject(): object;
+
     abstract public function getPass(): string;
 
     abstract public function getPort(): int;
