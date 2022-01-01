@@ -4,9 +4,9 @@ namespace Potter\MySQL\Database;
 
 use Potter\Database\{
     Connection\DatabaseConnectionInterface,
-    MySQL\Connection\MySQLConnectionInterface,
     Table\TableInterface
 };
+use Potter\MySQL\Connection\MySQLConnectionInterface;
 use \Exception;
 
 trait MySQLDatabaseTrait

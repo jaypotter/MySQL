@@ -11,16 +11,6 @@ trait MySQLConnectionTrait
 {
     private array $databases;
 
-    final public function characterSetExists(string $characterSet): bool
-    {
-        return in_array(
-            needle: $characterSet,
-            haystack: $this->getCharacterSet()
-        );
-    }
-
-    abstract public function getCharacterSet(): array;
-
     final public function getDatabases(bool $refresh = false): array
     {
         if ($refresh||!isset($this->databases)) {

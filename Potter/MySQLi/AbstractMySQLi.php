@@ -23,11 +23,11 @@ abstract class AbstractMySQLi extends AbstractMySQLConnection implements MySQLiI
     final public function createDatabase(DatabaseInterface $database): void
     {       
         mysqli_query(
-            mysqli: $this->getObject(),
+            mysql: $this->getObject(),
             query: self::CREATE_DATABASE . ' ' . $database->getName() .
                 ' CHARACTER SET = ' . $database->getCharacterSet() .
                 ' COLLATE = ' . $database->getCollation() .
-                ' ENCRYPTION = ' . $database->isEncrypted() ? 'Y' : 'N' . ';'
+                ' ENCRYPTION = \'' . ($database->isEncrypted() ? 'Y' : 'N') . '\';'
         );
     }
 

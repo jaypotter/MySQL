@@ -6,6 +6,14 @@ trait MySQLCharacterSetTrait
 {
     private array $characterSet;
 
+    final public function characterSetExists(string $characterSet): bool
+    {
+        return in_array(
+            needle: $characterSet,
+            haystack: $this->getCharacterSet()
+        );
+    }
+
     final public function getCharacterSet(): array
     {
         if (isset($this->characterSet)) {
