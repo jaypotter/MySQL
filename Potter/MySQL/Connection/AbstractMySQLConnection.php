@@ -8,28 +8,14 @@ use Potter\{
 };
 use Potter\Database\Connection\{
     DatabaseConnectionTrait,
-    Remote\AbstractRemoteDatabaseConnection
+    Remote\RemoteDatabaseConnection
 };
 
-abstract class AbstractMySQLConnection extends AbstractRemoteDatabaseConnection implements MySQLConnectionInterface
+abstract class AbstractMySQLConnection extends RemoteDatabaseConnection implements MySQLConnectionInterface
 {
-    use DatabaseConnectionTrait, MySQLConnectionTrait;
-
-    private const PREFIX = 'mysql';
-
     abstract public function characterSetExists(string $characterSet): bool;
 
     abstract public function getCharacterSet(): array;
-
-    final public function getDatabase(string $database): DatabaseInterface
-    {
-        return new MySQLDatabase($this, $database);
-    }
-
-    public function getPrefix(): string
-    {
-        return self::PREFIX;
-    }
 
     abstract public function showCharacterSet(): array;
 

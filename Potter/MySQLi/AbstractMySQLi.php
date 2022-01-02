@@ -9,13 +9,13 @@ use Potter\Abstraction\{
 };
 use Potter\Database\DatabaseInterface;
 use Potter\MySQL\Connection\{
-    AbstractMySQLConnection,
+    MySQLConnection,
     MySQLCharacterSetTrait
 };
 use Potter\MySQL\Database\MySQLDatabaseInterface;
 use \Exception;
 
-abstract class AbstractMySQLi extends AbstractMySQLConnection implements MySQLiInterface
+abstract class AbstractMySQLi extends MySQLConnection implements MySQLiInterface
 {
     use AbstractionTrait, AbstractionBaseClassTrait, MySQLCharacterSetTrait;
 
