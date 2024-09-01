@@ -6,7 +6,7 @@ namespace Potter\MySQL\MySQLi;
 
 use MySQLi;
 use Potter\{Aware\AwareTrait, Name\NameTrait};
-use Potter\Database\Driver\MySQL\AbstractMySQLDriver;
+use Potter\MySQL\Driver\AbstractMySQLDriver;
 use Potter\Database\{Statement\StatementInterface, Result\ResultInterface};
 
 final class MySQLiDriver extends AbstractMySQLDriver
