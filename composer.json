@@ -1,0 +1,21 @@
+{
+    "name": "potter/mysql",
+    "description": "PHP MySQL Interface",
+    "type": "library",
+    "require": {
+        "php": "^8.3"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Potter\\MySQL\\": "src/Potter/MySQL/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Jay Potter",
+            "email": "j@ypotter.ca"
+        }
+    ],
+    "minimum-stability": "dev"
+}
