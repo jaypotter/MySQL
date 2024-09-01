@@ -3,7 +3,9 @@
     "description": "PHP MySQL Interface",
     "type": "library",
     "require": {
-        "php": "^8.3"
+        "php": "^8.3",
+        "potter/array-access": "^0.0.3",
+        "potter/database": "dev-main"
     },
     "license": "MIT",
     "autoload": {
