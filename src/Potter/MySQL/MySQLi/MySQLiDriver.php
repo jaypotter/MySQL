@@ -23,7 +23,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
         return new MySQLiStatement($query, $handle);
     }
     
-    public function createDatabase(object $handle, string $database, string $charset = self::DEFAULT_CHARSET, string $collation = self::DEFAULT_COLLATION, bool $encryption = self::DEFAULT_ENCYPTION): void
+    public function createDatabase(object $handle, string $database, string $charset = self::DEFAULT_CHARSET, string $collation = self::DEFAULT_COLLATION, bool $encryption = self::DEFAULT_ENCRYPTION): void
     {
         $this->validateNewDatabase($database, $charset, $collation);
         ($this->prepare("CREATE DATABASE $database " .
