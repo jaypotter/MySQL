@@ -23,6 +23,19 @@ final class MySQLiDriver extends AbstractMySQLDriver
         return new MySQLiStatement($query, $handle);
     }
     
+    public function createDatabase(string $name, string $charset = self::CHARSET, string $collation = self::COLLATION): void
+    {
+        $this->validateNewDatabase($name, $charset, $collation);
+        ($this->prepare("CREATE DATABASE $database DEFAULT CHARACTER SET = '$charset' DEFAULT COLLATE = '$collate';", $handle))->execute();
+    }
+    
+    private function validateNewDatabase(string $name, string $charset = self::CHARSET, string $collation = self::COLLATION): void
+    {
+        if (!ctype_alnum(str_replace('_', '', $name . $charset . $collation))) {
+            throw new \Exception;
+        }
+    }
+    
     public function selectDatabase(object $handle): ResultInterface
     {
         $statement = $this->prepare('SELECT DATABASE();', $handle);
@@ -39,7 +52,6 @@ final class MySQLiDriver extends AbstractMySQLDriver
     
     public function use(string $database, object $handle): void
     {
-        $statement = $this->prepare("USE $database;", $handle);
-        $statement->execute();
+        ($this->prepare("USE $database;", $handle))->execute();
     }
 }
