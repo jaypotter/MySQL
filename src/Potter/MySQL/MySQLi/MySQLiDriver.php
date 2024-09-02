@@ -25,13 +25,13 @@ final class MySQLiDriver extends AbstractMySQLDriver
     
     public function createDatabase(object $handle, string $database, string $charset = self::DEFAULT_CHARSET, string $collation = self::DEFAULT_COLLATION): void
     {
-        $this->validateNewDatabase($name, $charset, $collation);
+        $this->validateNewDatabase($database, $charset, $collation);
         ($this->prepare("CREATE DATABASE $database DEFAULT CHARACTER SET = '$charset' DEFAULT COLLATE = '$collate';", $handle))->execute();
     }
     
-    private function validateNewDatabase(string $name, string $charset = self::CHARSET, string $collation = self::COLLATION): void
+    private function validateNewDatabase(string $database, string $charset, string $collation): void
     {
-        if (!ctype_alnum(str_replace('_', '', $name . $charset . $collation))) {
+        if (!ctype_alnum(str_replace('_', '', $database . $charset . $collation))) {
             throw new \Exception;
         }
     }
