@@ -4,7 +4,7 @@
     "type": "library",
     "require": {
         "php": "^8.3",
-        "potter/array-access": "^0.0.3",
+        "potter/array-access": "dev-main",
         "potter/database": "dev-main"
     },
     "license": "MIT",
