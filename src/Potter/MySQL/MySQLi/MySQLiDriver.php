@@ -38,6 +38,11 @@ final class MySQLiDriver extends AbstractMySQLDriver
         }
     }
     
+    final public function dropDatabase(object $handle, string $database): void
+    {
+        ($this->prepare("DROP DATABASE $database;"))->execute();
+    }
+    
     public function selectDatabase(object $handle): ResultInterface
     {
         $statement = $this->prepare('SELECT DATABASE();', $handle);
