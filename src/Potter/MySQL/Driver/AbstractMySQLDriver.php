@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace Potter\MySQL\Driver;
 
-use Potter\Database\Driver\AbstractDatabaseDriver;
-use Potter\Database\Result\ResultInterface;
+use Potter\Database\{
+    Driver\AbstractDatabaseDriver,
+    Result\ResultInterface
+};
 
 abstract class AbstractMySQLDriver extends AbstractDatabaseDriver implements MySQLDriverInterface
 {

@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Potter\MySQL\MySQLi;
 
 use \MySQLi_Result;
-use Potter\Database\Result\AbstractResult;
-use Potter\ArrayAccess\Numbered\NumberedArrayTrait;
+use Potter\{
+    ArrayAccess\Numbered\NumberedArrayTrait,
+    Database\Result\AbstractResult
+};
 
 final class MySQLiResult extends AbstractResult
 {

@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Potter\MySQL\MySQLi;
 
 use MySQLi, MySQLi_Stmt;
-use Potter\Database\Statement\AbstractStatement;
-use Potter\Database\Result\ResultInterface;
+use Potter\Database\{
+    Statement\AbstractStatement,
+    Result\ResultInterface
+};
 
 final class MySQLiStatement extends AbstractStatement
 {   

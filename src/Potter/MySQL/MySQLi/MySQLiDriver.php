@@ -5,9 +5,15 @@ declare(strict_types=1);
 namespace Potter\MySQL\MySQLi;
 
 use MySQLi;
-use Potter\{Aware\AwareTrait, Name\NameTrait};
-use Potter\MySQL\Driver\AbstractMySQLDriver;
-use Potter\Database\{Statement\StatementInterface, Result\ResultInterface};
+use Potter\{
+    Aware\AwareTrait,
+    MySQL\Driver\AbstractMySQLDriver,
+    Name\NameTrait
+};
+use Potter\Database\{
+    Statement\StatementInterface, 
+    Result\ResultInterface
+};
 
 final class MySQLiDriver extends AbstractMySQLDriver
 {
