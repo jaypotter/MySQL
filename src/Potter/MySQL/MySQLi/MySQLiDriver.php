@@ -29,7 +29,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
         ($this->prepare("CREATE DATABASE $database " .
             "DEFAULT CHARACTER SET = '$charset' " .
             "DEFAULT COLLATE = '$collation' " .
-            "DEFAULT ENCRYPTION = '" . $encryption ? 'Y' : 'N' . "';", $handle))->execute();
+            "DEFAULT ENCRYPTION = '" . ($encryption ? 'Y' : 'N') . "';", $handle))->execute();
     }
     
     private function validateNewDatabase(string $database, string $charset, string $collation): void
