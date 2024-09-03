@@ -55,8 +55,8 @@ final class MySQLiDriver extends AbstractMySQLDriver
             $columnText .= $column->getName() . ' ' . $column->getColumnType();
             if ($iColumn < $nColumns) {
                 $columnText .= ', ';
-                continue;
                 $iColumn++;
+                continue;
             }
             $columnText .= ' ';
         }
