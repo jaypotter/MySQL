@@ -52,7 +52,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
         $nColumns = count($columns);
         $iColumn = 1;
         foreach ($columns as $column) {
-            $columnText .= $column->getName() . ' ' . $column->getType();
+            $columnText .= $column->getName() . ' ' . $column->getColumnType();
             if ($iColumn < $nColumns) {
                 $columnText .= ', ';
                 break;
@@ -78,7 +78,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
         if (!ctype_alnum(str_replace('_', '', $column->getName()))) {
             throw new \Exception;
         }
-        if (!ctype_alnum(str_replace(['_', '(', ')', ' '], '', $column->getType()))) {
+        if (!ctype_alnum(str_replace(['_', '(', ')', ' '], '', $column->getColumnType()))) {
             throw new \Exception;
         }
     }
