@@ -45,7 +45,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
         }
     }
     
-    public function createTable(string $table, ColumnInterface ...$columns): void
+    public function createTable(object $handle, string $table, ColumnInterface ...$columns): void
     {
         $this->validateNewTable($table, ...$columns);
         $columnText = '';
@@ -83,9 +83,14 @@ final class MySQLiDriver extends AbstractMySQLDriver
         }
     }
     
-    final public function dropDatabase(object $handle, string $database): void
+    public function dropDatabase(object $handle, string $database): void
     {
         ($this->prepare("DROP DATABASE $database;", $handle))->execute();
+    }
+    
+    public function dropTable(object $handle, string $table): void
+    {
+        ($this->prepare("DROP TABLE $table;", $handle))->execute();
     }
     
     public function selectDatabase(object $handle): ResultInterface
