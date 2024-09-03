@@ -11,8 +11,9 @@ use Potter\{
     Name\NameTrait
 };
 use Potter\Database\{
-    Statement\StatementInterface, 
-    Result\ResultInterface
+    Column\ColumnInterface, 
+    Result\ResultInterface,
+    Statement\StatementInterface
 };
 
 final class MySQLiDriver extends AbstractMySQLDriver
@@ -40,6 +41,44 @@ final class MySQLiDriver extends AbstractMySQLDriver
     private function validateNewDatabase(string $database, string $charset, string $collation): void
     {
         if (!ctype_alnum(str_replace('_', '', $database . $charset . $collation))) {
+            throw new \Exception;
+        }
+    }
+    
+    public function createTable(string $table, ColumnInterface ...$columns): void
+    {
+        $this->validateNewTable($table, ...$columns);
+        $columnText = '';
+        $nColumns = count($columns);
+        $iColumn = 1;
+        foreach ($columns as $column) {
+            $columnText .= $column->getName() . ' ' . $column->getType();
+            if ($iColumn < $nColumns) {
+                $columnText .= ', ';
+                break;
+            }
+            $columnText .= ' ';
+            $iColumn++;
+        }
+        echo $columnText;
+    }
+    
+    private function validateNewTable(string $table, ColumnInterface ...$columns): void
+    {
+        if (!ctype_alnum(str_replace('_', '', $table))) {
+            throw new \Exception;
+        }
+        foreach ($columns as $column) {
+            $this->validateColumn($column);
+        }
+    }
+    
+    private function validateColumn(ColumnInterface $column): void
+    {
+        if (!ctype_alnum(str_replace('_', '', $column->getName()))) {
+            throw new \Exception;
+        }
+        if (!ctype_alnum(str_replace(['_', '(', ')', ' '], '', $column->getType()))) {
             throw new \Exception;
         }
     }
