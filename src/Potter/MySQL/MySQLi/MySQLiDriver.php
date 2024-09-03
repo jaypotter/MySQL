@@ -63,6 +63,13 @@ final class MySQLiDriver extends AbstractMySQLDriver
         return $statement->getResult();
     }
     
+    public function showTables(object $handle): ResultInterface
+    {
+        $statement = $this->prepare('SHOW TABLES;', $handle);
+        $statement->execute();
+        return $statement->getResult();
+    }
+    
     public function use(object $handle, string $database): void
     {
         ($this->prepare("USE $database;", $handle))->execute();
