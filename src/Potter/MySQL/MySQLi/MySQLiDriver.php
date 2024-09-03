@@ -48,6 +48,10 @@ final class MySQLiDriver extends AbstractMySQLDriver
     public function createTable(object $handle, string $table, ColumnInterface ...$columns): void
     {
         $this->validateNewTable($table, ...$columns);
+    }
+    
+    private function getCreateTableColumnText(ColumnInterface ...$columns): string
+    {
         $columnText = '';
         $nColumns = count($columns);
         $iColumn = 1;
@@ -55,12 +59,10 @@ final class MySQLiDriver extends AbstractMySQLDriver
             $columnText .= $column->getName() . ' ' . $column->getColumnType();
             if ($iColumn < $nColumns) {
                 $columnText .= ', ';
-                $iColumn++;
-                continue;
             }
-            $columnText .= ' ';
+            $iColumn++;
         }
-        echo $columnText;
+        return $columnText;
     }
     
     private function validateNewTable(string $table, ColumnInterface ...$columns): void
