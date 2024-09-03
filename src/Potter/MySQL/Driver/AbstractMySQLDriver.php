@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Potter\MySQL\Driver;
 
 use Potter\Database\{
+    Column\ColumnInterface,
     Driver\AbstractDatabaseDriver,
     Result\ResultInterface
 };
