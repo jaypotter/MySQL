@@ -56,9 +56,9 @@ final class MySQLiDriver extends AbstractMySQLDriver
             if ($iColumn < $nColumns) {
                 $columnText .= ', ';
                 continue;
+                $iColumn++;
             }
             $columnText .= ' ';
-            $iColumn++;
         }
         echo $columnText;
     }
