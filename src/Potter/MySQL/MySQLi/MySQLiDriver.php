@@ -48,6 +48,9 @@ final class MySQLiDriver extends AbstractMySQLDriver
     public function createTable(object $handle, string $table, ColumnInterface ...$columns): void
     {
         $this->validateNewTable($table, ...$columns);
+        ($this->prepare("CREATE TABLE $table (" .
+            $this->getCreateTableColumnText(...$columns) . 
+            ");", $handle))->execute();
     }
     
     private function getCreateTableColumnText(ColumnInterface ...$columns): string
