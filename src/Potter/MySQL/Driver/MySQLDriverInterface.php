@@ -19,6 +19,7 @@ interface MySQLDriverInterface extends DatabaseDriverInterface
     public function dropDatabase(object $handle, string $database): void;
     public function createTable(object $handle, string $table, ColumnInterface ...$columns): void;
     public function dropTable(object $handle, string $database): void;
+    public function insert(object $handle, string $table, array $values): void;
     public function selectDatabase(object $handle): ResultInterface;
     public function showDatabases(object $handle): ResultInterface;
     public function showTables(object $handle): ResultInterface;

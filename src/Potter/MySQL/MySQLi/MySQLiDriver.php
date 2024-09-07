@@ -149,4 +149,14 @@ final class MySQLiDriver extends AbstractMySQLDriver
     {
         ($this->prepare("USE $database;", $handle))->execute();
     }
+    
+    public function insert(object $handle, string $table, array $values): void
+    {
+        $shadowValues = [];
+        for($i = 0; $i < count($values); $i++) {
+            array_push($shadowValues, '?');
+        }
+        $statement = $this->prepare("INSERT INTO $table (" . implode(', ', array_keys($values)) . ") VALUES (" . implode(', ', $shadowValues) . ");" , $handle);
+        $statement->execute(...array_values($values));
+    }
 }
