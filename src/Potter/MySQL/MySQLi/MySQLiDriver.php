@@ -51,7 +51,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
         $this->validateNewTable($table, ...$columns);
         ($this->prepare("CREATE TABLE $table (" .
             $this->getCreateTableColumnText(...$columns) . 
-            $this->getCreateTableConstraintText($columns) . 
+            $this->getCreateTableConstraintText(...$columns) . 
             ");", $handle))->execute();
     }
     
