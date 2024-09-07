@@ -65,6 +65,9 @@ final class MySQLiDriver extends AbstractMySQLDriver
             if (!($column->hasNullable() || $column->hasPrimaryKey())) {
                 $columnText .= ' NOT NULL';
             }
+            if ($column->hasAutoIncrement()) {
+                $columnText .= ' AUTO_INCREMENT';
+            }
             if ($iColumn < $nColumns) {
                 $columnText .= ', ';
             }
