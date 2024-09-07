@@ -27,6 +27,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
     
     public function prepare(string $query, object $handle): StatementInterface
     {
+        echo $query . PHP_EOL;
         return new MySQLiStatement($query, $handle);
     }
     
@@ -50,6 +51,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
         $this->validateNewTable($table, ...$columns);
         ($this->prepare("CREATE TABLE $table (" .
             $this->getCreateTableColumnText(...$columns) . 
+            $this->getCreateTableConstraintText($columns) . 
             ");", $handle))->execute();
     }
     
@@ -66,6 +68,21 @@ final class MySQLiDriver extends AbstractMySQLDriver
             $iColumn++;
         }
         return $columnText;
+    }
+    
+    private function getCreateTableConstraintText(ColumnInterface ...$columns): string
+    {
+        $constraintText = '';
+        foreach ($columns as $column) {
+            if ($column->hasPrimaryKey()) {
+                $constraintText .= ', PRIMARY KEY (' . $column->getName() . ')';
+                continue;
+            }
+            if ($column->hasUniqueConstraint()) {
+                $constraintText .= ', UNIQUE (' . $column->getName() . ')';
+            }
+        }
+        return $constraintText;
     }
     
     private function validateNewTable(string $table, ColumnInterface ...$columns): void
