@@ -62,6 +62,9 @@ final class MySQLiDriver extends AbstractMySQLDriver
         $iColumn = 1;
         foreach ($columns as $column) {
             $columnText .= $column->getName() . ' ' . $column->getColumnType();
+            if (!($column->hasNullable() || !$column->hasPrimaryKey())) {
+                $columnText .= ' NOT NULL';
+            }
             if ($iColumn < $nColumns) {
                 $columnText .= ', ';
             }
