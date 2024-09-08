@@ -27,7 +27,6 @@ final class MySQLiDriver extends AbstractMySQLDriver
     
     public function prepare(string $query, object $handle): StatementInterface
     {
-        echo $query . PHP_EOL;
         return new MySQLiStatement($query, $handle);
     }
     
