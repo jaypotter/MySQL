@@ -123,6 +123,27 @@ final class MySQLiDriver extends AbstractMySQLDriver
         ($this->prepare("DROP TABLE $table;", $handle))->execute();
     }
     
+    public function select(object $handle, string $table, ?array $columns = null, ?array $criteria = null): ResultInterface
+    {
+        $columnText = (is_null($columns) || empty($columns)) ? '*' : implode(', ', $columns);
+        $criteriaText = '';
+        if (!(is_null($criteria) || empty($criteria))) {
+            $criteriaText = ' WHERE ';
+            $first = true;
+            foreach (array_keys($criteria) as $key) {
+                if ($first) {
+                    $first = false;
+                } else {
+                    $criteriaText .= ' AND ';
+                }
+                $criteriaText .= "'" . $key . "' = '?'";
+            }
+        }
+        echo "SELECT $columnText FROM $table $criteriaText;" . PHP_EOL;
+        $statement = $this->prepare("SELECT $columnText FROM $table $criteriaText;");
+        $statement->execute(array_values($criteria));
+    }
+    
     public function selectDatabase(object $handle): ResultInterface
     {
         $statement = $this->prepare('SELECT DATABASE();', $handle);
