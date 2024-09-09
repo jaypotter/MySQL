@@ -145,6 +145,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
         echo "SELECT $columnText FROM $table $criteriaText;" . PHP_EOL;
         $statement = $this->prepare("SELECT $columnText FROM $table $criteriaText;", $handle);
         $statement->execute(...array_values($criteria));
+        return $statement->getResult();
     }
     
     public function selectDatabase(object $handle): ResultInterface
