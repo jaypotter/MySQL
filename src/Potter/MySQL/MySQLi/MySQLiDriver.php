@@ -140,7 +140,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
             }
         }
         echo "SELECT $columnText FROM $table $criteriaText;" . PHP_EOL;
-        $statement = $this->prepare("SELECT $columnText FROM $table $criteriaText;");
+        $statement = $this->prepare("SELECT $columnText FROM $table $criteriaText;", $this->getHandle());
         $statement->execute(array_values($criteria));
     }
     
