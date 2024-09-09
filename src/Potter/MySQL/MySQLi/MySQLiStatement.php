@@ -26,6 +26,10 @@ final class MySQLiStatement extends AbstractStatement
     
     public function execute(mixed ...$vars): void
     {
+        if (empty($vars)) {
+            $this->statement->execute();
+            return;
+        }
         $this->statement->execute($vars);
     }
     
