@@ -158,4 +158,9 @@ final class MySQLiDriver extends AbstractMySQLDriver
         $statement = $this->prepare("INSERT INTO $table (" . implode(', ', array_keys($values)) . ") VALUES (" . implode(', ', $shadowValues) . ");" , $handle);
         $statement->execute(...array_values($values));
     }
+    
+    public function getLastInsertId(object $handle): int
+    {
+        return $this->getMySQLi($handle)->insert_id;
+    }
 }
