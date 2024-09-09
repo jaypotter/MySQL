@@ -127,7 +127,10 @@ final class MySQLiDriver extends AbstractMySQLDriver
     {
         $columnText = (is_null($columns) || empty($columns)) ? '*' : implode(', ', $columns);
         $criteriaText = '';
-        if (!(is_null($criteria) || empty($criteria))) {
+        if (is_null($criteria)) {
+            $criteria = [];
+        }
+        if (!empty($criteria)) {
             $criteriaText = ' WHERE ';
             $first = true;
             foreach (array_keys($criteria) as $key) {
