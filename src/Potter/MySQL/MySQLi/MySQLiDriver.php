@@ -20,6 +20,8 @@ final class MySQLiDriver extends AbstractMySQLDriver
 {
     use AwareTrait, NameTrait;
     
+    private int $insertId;
+    
     private function getMySQLi(object $handle): MySQLi
     {
         return $handle;
@@ -185,11 +187,15 @@ final class MySQLiDriver extends AbstractMySQLDriver
         echo "INSERT INTO $table (" . implode(', ', array_keys($values)) . ") VALUES (" . implode(', ', $shadowValues) . ");" . PHP_EOL;
         $statement = $this->prepare("INSERT INTO $table (" . implode(', ', array_keys($values)) . ") VALUES (" . implode(', ', $shadowValues) . ");" , $handle);
         $statement->execute(array_values($values));
+        $insertId = $this->getMySQLi($handle)->insert_id;
+        if ($insertId > 0) {
+            $this->insertId = $insertId;
+        }
     }
     
     public function getLastInsertId(object $handle): int
     {
-        return $this->getMySQLi($handle)->insert_id;
+        return $this->insertId;
     }
     
     public function update(object $handle, string $table, array $values, array $criteria = []): void
