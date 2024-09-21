@@ -140,7 +140,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
                 } else {
                     $criteriaText .= ' AND ';
                 }
-                $criteriaText .= "" . $key . " = ? ";
+                $criteriaText .= "" . $key . " = ?";
             }
             $values = array_values($criteria);
         }
