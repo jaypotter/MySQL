@@ -24,13 +24,24 @@ final class MySQLiStatement extends AbstractStatement
         return $this->query;
     }
     
-    public function execute(mixed ...$vars): void
+    public function execute(array $vars = []): void
     {
+        
         if (empty($vars)) {
             $this->statement->execute();
             return;
         }
-        $this->statement->execute($vars);
+        $types = '';
+        foreach ($vars as $var) {
+            $types .= is_int($var) ? 'i' : 's';
+        }
+        $varA = array_shift($vars);
+        if (count($vars) === 0) {
+            $this->statement->bind_param($types, $varA);
+        } else {
+            $this->statement->bind_param($types, $varA, ...$vars);
+        }
+        $this->statement->execute();
     }
     
     public function getResult(): ResultInterface
