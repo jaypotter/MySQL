@@ -130,8 +130,9 @@ final class MySQLiDriver extends AbstractMySQLDriver
         if (is_null($criteria)) {
             $criteria = [];
         }
+        $values = null;
         if (!empty($criteria)) {
-            $criteriaText = ' WHERE ';
+            $criteriaText = 'WHERE ';
             $first = true;
             foreach (array_keys($criteria) as $key) {
                 if ($first) {
@@ -139,12 +140,13 @@ final class MySQLiDriver extends AbstractMySQLDriver
                 } else {
                     $criteriaText .= ' AND ';
                 }
-                $criteriaText .= "'" . $key . "' = '?'";
+                $criteriaText .= "" . $key . " = ? ";
             }
+            $values = array_values($criteria);
         }
-        echo "SELECT $columnText FROM $table $criteriaText;" . PHP_EOL;
         $statement = $this->prepare("SELECT $columnText FROM $table $criteriaText;", $handle);
-        $statement->execute(...array_values($criteria));
+        echo "SELECT $columnText FROM $table $criteriaText;" . PHP_EOL;
+        $statement->execute($values);
         return $statement->getResult();
     }
     
@@ -180,8 +182,9 @@ final class MySQLiDriver extends AbstractMySQLDriver
         for($i = 0; $i < count($values); $i++) {
             array_push($shadowValues, '?');
         }
+        echo "INSERT INTO $table (" . implode(', ', array_keys($values)) . ") VALUES (" . implode(', ', $shadowValues) . ");" . PHP_EOL;
         $statement = $this->prepare("INSERT INTO $table (" . implode(', ', array_keys($values)) . ") VALUES (" . implode(', ', $shadowValues) . ");" , $handle);
-        $statement->execute(...array_values($values));
+        $statement->execute(array_values($values));
     }
     
     public function getLastInsertId(object $handle): int
