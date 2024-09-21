@@ -191,4 +191,32 @@ final class MySQLiDriver extends AbstractMySQLDriver
     {
         return $this->getMySQLi($handle)->insert_id;
     }
+    
+    public function update(object $handle, string $table, array $values, array $criteria = []): void
+    {
+        $valuesText = '';
+        $vFirst = true;
+        foreach ($values as $key => $value) {
+            if (!$vFirst) {
+                $valuesText .= ', ';
+            } else {
+                $vFirst = false;
+            }
+            $valuesText .= "$key = ?";
+        }
+        $criteriaText = '';
+        $cFirst = true;
+        foreach ($criteria as $key => $value) {
+            if (!$cFirst) {
+                $criteriaText .= ', ';
+            } else {
+                $cFirst = false;
+            }
+            $criteriaText .= "$key = ?";
+        }
+        $query = "UPDATE $table SET $valuesText WHERE $criteriaText;";
+        echo $query;
+        $statement = $this->prepare($query, $handle);
+        $statement->execute([...array_values($values), ...array_values($criteria)]);
+    }
 }

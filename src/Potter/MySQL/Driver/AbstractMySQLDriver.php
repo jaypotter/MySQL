@@ -22,4 +22,5 @@ abstract class AbstractMySQLDriver extends AbstractDatabaseDriver implements MyS
     abstract public function showDatabases(object $handle): ResultInterface;
     abstract public function showTables(object $handle): ResultInterface;
     abstract public function use(object $handle, string $database): void;
+    abstract public function update(object $handle, string $table, array $values, array $criteria = []);
 }
