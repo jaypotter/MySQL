@@ -132,7 +132,7 @@ final class MySQLiDriver extends AbstractMySQLDriver
         if (is_null($criteria)) {
             $criteria = [];
         }
-        $values = null;
+        $values = [];
         if (!empty($criteria)) {
             $criteriaText = 'WHERE ';
             $first = true;
@@ -147,7 +147,6 @@ final class MySQLiDriver extends AbstractMySQLDriver
             $values = array_values($criteria);
         }
         $statement = $this->prepare("SELECT $columnText FROM $table $criteriaText;", $handle);
-        echo "SELECT $columnText FROM $table $criteriaText;" . PHP_EOL;
         $statement->execute($values);
         return $statement->getResult();
     }
@@ -184,7 +183,6 @@ final class MySQLiDriver extends AbstractMySQLDriver
         for($i = 0; $i < count($values); $i++) {
             array_push($shadowValues, '?');
         }
-        echo "INSERT INTO $table (" . implode(', ', array_keys($values)) . ") VALUES (" . implode(', ', $shadowValues) . ");" . PHP_EOL;
         $statement = $this->prepare("INSERT INTO $table (" . implode(', ', array_keys($values)) . ") VALUES (" . implode(', ', $shadowValues) . ");" , $handle);
         $statement->execute(array_values($values));
         $insertId = $this->getMySQLi($handle)->insert_id;
@@ -221,7 +219,6 @@ final class MySQLiDriver extends AbstractMySQLDriver
             $criteriaText .= "$key = ?";
         }
         $query = "UPDATE $table SET $valuesText WHERE $criteriaText;";
-        echo $query;
         $statement = $this->prepare($query, $handle);
         $statement->execute([...array_values($values), ...array_values($criteria)]);
     }
